@@ -5,6 +5,11 @@ controller:
     enabled: false
   serviceType: NodePort
   nodePort: 31466 
+  additionalExistingSecrets: 
+    - name: gitouth 
+      keyName: gitid
+    - name: gitouth
+      keyName: gittoken
   agentListenerEnabled: true
   agentListenerPort: 50000
   agentListenerHostPort:
