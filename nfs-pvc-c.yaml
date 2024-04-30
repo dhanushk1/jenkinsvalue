@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc-c
-  namespace: default
+  namespace: build-infra-jenkins
 spec:
   accessModes:
   - ReadWriteMany
