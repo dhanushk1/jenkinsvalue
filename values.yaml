@@ -1,5 +1,6 @@
 controller:
   image:
+    tag: "2.440.3-jdk17"
     tagLabel: jdk17
   ingress:
     enabled: false
