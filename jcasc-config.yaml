@@ -20,8 +20,8 @@ controller:
             github:
               githubWebUri: "https://github.com"
               githubApiUri: "https://api.github.com"
-              clientID: "${GIT_CLIENT_ID}"
-              clientSecret: "${GIT_CLIENT_SECRET}"
+              clientID: "${github-variable-GIT_CLIENT_ID}"
+              clientSecret: "${github-variable-GIT_CLIENT_SECRET}"
               oauthScopes: "read:org,user:email"
           
           systemMessage: Welcome to our CI\CD server update jfrog.
