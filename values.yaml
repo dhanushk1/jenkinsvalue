@@ -4,7 +4,12 @@ controller:
   ingress:
     enabled: false
   serviceType: NodePort
-  nodePort: 31466 
+  nodePort: 31466
+  additionalExistingSecrets: 
+    - name: github-variable 
+      keyName: GIT_CLIENT_ID 
+    - name: github-variable 
+      keyName: GIT_CLIENT_SECRET
   agentListenerEnabled: true
   agentListenerPort: 50000
   agentListenerHostPort:
