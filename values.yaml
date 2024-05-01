@@ -5,11 +5,10 @@ controller:
     enabled: false
   serviceType: NodePort
   nodePort: 31466
+  existingSecret: github-auth
   additionalExistingSecrets: 
-    - name: github-variable 
-      keyName: GIT_CLIENT_ID 
-    - name: github-variable 
-      keyName: GIT_CLIENT_SECRET
+    - name: jenkins-env-var 
+      keyName: ART_SERV 
   agentListenerEnabled: true
   agentListenerPort: 50000
   agentListenerHostPort:
@@ -28,23 +27,6 @@ controller:
   agentListenerServiceType: "ClusterIP"
   agentListenerLoadBalancerIP:
   agentListenerServiceAnnotations: {}
-  installPlugins:
-    - kubernetes:4054.v2da_8e2794884
-    - workflow-aggregator:596.v8c21c963d92d
-    - configuration-as-code:latest
-    - role-strategy:latest
-    - script-security:latest
-    - ldap:latest
-    - authorize-project:latest
-    - credentials-binding:latest
-    - ssh-credentials:latest
-    - aws-credentials:latest
-    - credentials:latest
-    - oauth-credentials:latest
-    - plain-credentials:latest
-    - atlassian-jira-software-cloud:latest
-    - jira:latest
-    - blueocean-jira:latest
 agent:
   enabled: true
   podName: default
@@ -57,3 +39,9 @@ agent:
     limits:
       cpu: "512m"
       memory: "512Mi"
+persistence:
+  enabled: true
+  existingClaim: nfs-pvc-a
+  storageClass: local-path
+  accessMode: "ReadWriteMany"
+  size: 5Gi 
