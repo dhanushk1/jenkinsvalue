@@ -1,11 +1,11 @@
-- op: replace
-  path: /spec/source/helm/values
-  value: |
-    controller:
-      nodePort: 31466
-    persistence:
-      enabled: true
-      existingClaim: nfs-pvc-a
-      storageClass: local-path
-      accessMode: "ReadWriteMany"
-      size: 5Gi 
+# - op: replace
+#   path: /spec/source/helm/values
+#   value: |
+#     controller:
+#       nodePort: 31466
+#     persistence:
+#       enabled: true
+#       existingClaim: nfs-pvc-a
+#       storageClass: local-path
+#       accessMode: "ReadWriteMany"
+#       size: 5Gi 
