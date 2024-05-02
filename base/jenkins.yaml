@@ -18,7 +18,6 @@ spec:
       path: charts/jenkins 
       targetRevision: "5.1.6"
       helm:
-        values: {}
         valueFiles:
         - $values/base/values.yaml
         - $values/base/plugins.yaml
