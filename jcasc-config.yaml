@@ -123,7 +123,7 @@ controller:
                       - user: "Dhanushkelam"
                          
           
-          systemMessage: Welcome to our CI\CD server update jfrog.
+          systemMessage: Welcome to our CI\CD server update jfrogggggggg.
           
           globalNodeProperties: 
           - envVars: 
