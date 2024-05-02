@@ -22,7 +22,106 @@ controller:
               githubApiUri: "https://api.github.com"
               clientID: "${GIT_CLIENT_ID}"
               clientSecret: "${GIT_CLIENT_SECRET}"
-              oauthScopes: "read:org,user:email"
+              oauthScopes: "read:org,user:email,repo"
+          authorizationStrategy:
+            roleBased:
+              roles:
+                agents:
+                  - name: "General"
+                    pattern: "gen-suse-.*"
+                    permissions:
+                      - "Agent/Build"
+                    entries:
+                      - group: "Development"
+                      - group: "Testing"
+                global:
+                  - name: "admin"
+                    description: "Jenkins administrators"
+                    permissions:
+                      - "Overall/Administer"
+                    entries:
+                      - user: "admin"
+                      - user: "dhanushk1"
+                  - name: "Build Team"
+                    description: "administrators"
+                    permissions:
+                      - "Overall/Administer"
+                    entries:
+                      - user: "Autonomous Jenkins"
+                      - user: "RR"
+                      
+                  - name: "Developer"
+                    description: "Jenkins administrators"
+                    permissions:
+                      - "Overall/Read"
+                      - "Credentials/View"
+                      - "Agent/Build"
+                      - "Job/Build"
+                      - "Job/Cancel"
+                      - "Job/Read"
+                      - "Job/Workspace"
+                      - "Run/Delete"
+                      - "Run/Replay"
+                      - "Run/Update"
+                      - "View/Configure"
+                      - "View/Create"
+                      - "View/Delete"
+                      - "View/Read"
+                    entries:
+                      - group: "Development"
+                      - group: "Internal-Tools"
+                      - user: "Dhanushkelam"
+                  - name: "readonly"
+                    description: "Read-only users"
+                    permissions:
+                      - "Overall/Read"
+                      - "Job/Read"
+                      - "Job/Workspace"
+                      - "View/Read"
+                    entries:
+                      - user: "Anonymous"
+                items:
+                  - name: "BitBucket-Pipelines"
+                    description: "BitBucket-Pipelines DESCRIPTION"
+                    pattern: "Environment/(Update-BuildResources)(/*)?"
+                    permissions:
+                      - "Job/Build"
+                    entries:
+                      - user: "jenkins bitbucket"
+                  - name: "EATS"
+                    description: "EATS DESCRIPTION"
+                    pattern: "EATS|EATS/.*"
+                    permissions:
+                      - "Credentials/Create"
+                      - "Credentials/Delete"
+                      - "Credentials/Update"
+                      - "Credentials/View"
+                      - "Job/Build"
+                      - "Job/Cancel"
+                      - "Job/Configure"
+                      - "Job/Create"
+                      - "Job/Delete"
+                      - "Job/Move"
+                      - "Job/Read"
+                      - "Job/Workspace"
+                      - "Run/Delete"
+                      - "Run/Update"
+                    entries:
+                      - user: "R"
+                  - name: "Eyeglass"
+                    description: "Eyeglass DESCRIPTION"
+                    pattern: "Eyeglass/.*"
+                    permissions:
+                      - "Job/Build"
+                      - "Job/Cancel"
+                      - "Job/Read"
+                      - "Job/Workspace"
+                      - "Run/Replay"
+                      - "Run/Update"       
+                    entries:
+                      - user: "AA"
+                      - user: "Dhanushkelam"
+                         
           
           systemMessage: Welcome to our CI\CD server update jfrog.
           
