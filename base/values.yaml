@@ -5,7 +5,7 @@ controller:
   ingress:
     enabled: false
   serviceType: NodePort
-  # nodePort: {} 31466 # need to change
+  nodePort: 31466
   existingSecret: github-auth
   additionalExistingSecrets: 
     - name: jenkins-env-var 
@@ -40,9 +40,9 @@ agent:
     limits:
       cpu: "512m"
       memory: "512Mi"
-# persistence: {} # need to change
-#   enabled: true
-#   existingClaim: nfs-pvc-a
-#   storageClass: local-path
-#   accessMode: "ReadWriteMany"
-#   size: 5Gi 
+persistence:
+  enabled: true
+  existingClaim: nfs-pvc-a
+  storageClass: local-path
+  accessMode: "ReadWriteMany"
+  size: 5Gi 
