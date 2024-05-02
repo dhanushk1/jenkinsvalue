@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: build-infra-jenkins
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkinsc
+spec:
+  project: default
+  destination:
+    namespace: build-infra-jenkins
+    server: https://kubernetes.default.svc
+  sources:
+    - repoURL: 'https://charts.jenkins.io'
+      chart: jenkins
+      path: charts/jenkins 
+      targetRevision: "5.1.6"
+      helm:
+        values: {}
+        valueFiles:
+        - $values/base/values.yaml
+        - $values/base/plugins.yaml
+    - repoURL: 'https://github.com/dhanushk1/jenkinsvalue.git'
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+
+---
+apiVersion: secrets.infisical.com/v1alpha1
+kind: InfisicalSecret
+metadata:
+  name: jenkins-env-variable
+spec:
+  authentication:
+    serviceToken:
+      serviceTokenSecretReference:
+        secretName: service-token
+        secretNamespace: infisical
+      secretsScope:
+        envSlug: ca-central-1
+        secretsPath: /Env-variables
+  managedSecretReference:
+    secretName: jenkins-env-var
+    secretNamespace: build-infra-jenkins
+
+---
+apiVersion: secrets.infisical.com/v1alpha1
+kind: InfisicalSecret
+metadata:
+  name: jenkins-auth
+spec:
+  authentication:
+    serviceToken:
+      serviceTokenSecretReference:
+        secretName: service-token
+        secretNamespace: infisical
+      secretsScope:
+        envSlug: ca-central-1
+        secretsPath: /Git-Auth
+  managedSecretReference:
+    secretName: github-auth
+    secretNamespace: build-infra-jenkins
+
