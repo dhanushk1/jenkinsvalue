@@ -1,0 +1,11 @@
+- op: replace
+  path: /base/jenkins
+  value: |
+    controller:
+      nodePort: 31466
+    persistence:
+      enabled: true
+      existingClaim: nfs-pvc-a
+      storageClass: local-path
+      accessMode: "ReadWriteMany"
+      size: 5Gi 
