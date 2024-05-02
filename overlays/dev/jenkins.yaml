@@ -1,6 +1,6 @@
 - op: replace
   path: /base/jenkins
-  value: |
+  values: |
     controller:
       nodePort: 31469
     persistence:
