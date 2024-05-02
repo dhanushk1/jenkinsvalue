@@ -1,0 +1,48 @@
+controller:
+  image:
+    tag: "2.440.3-jdk17"
+    tagLabel: jdk17
+  ingress:
+    enabled: false
+  serviceType: NodePort
+  # nodePort: {} 31466 # need to change
+  existingSecret: github-auth
+  additionalExistingSecrets: 
+    - name: jenkins-env-var 
+      keyName: ART_SERV 
+  agentListenerEnabled: true
+  agentListenerPort: 50000
+  agentListenerHostPort:
+  agentListenerNodePort:
+  agentListenerExternalTrafficPolicy:
+  agentListenerLoadBalancerSourceRanges:
+  - 0.0.0.0/0
+  disabledAgentProtocols:
+    - JNLP-connect
+    - JNLP2-connect
+  csrf:
+    defaultCrumbIssuer:
+      enabled: true
+      proxyCompatability: false 
+  
+  agentListenerServiceType: "ClusterIP"
+  agentListenerLoadBalancerIP:
+  agentListenerServiceAnnotations: {}
+agent:
+  enabled: true
+  podName: default
+  customJenkinsLabels: default
+  maxRequestsPerHostStr: "32"
+  resources:
+    requests:
+      cpu: "512m"
+      memory: "512Mi"
+    limits:
+      cpu: "512m"
+      memory: "512Mi"
+# persistence: {} # need to change
+#   enabled: true
+#   existingClaim: nfs-pvc-a
+#   storageClass: local-path
+#   accessMode: "ReadWriteMany"
+#   size: 5Gi 
