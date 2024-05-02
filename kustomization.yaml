@@ -4,5 +4,5 @@ metadata:
   name: jenkinsc-prod
   namespace: build-infra-jenkins-prod
 resources:
-  - overlays/dev
-  - overlays/prod
+  - ./overlays/dev
+  - ./overlays/prod
