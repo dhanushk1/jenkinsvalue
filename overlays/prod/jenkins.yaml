@@ -1,5 +1,5 @@
 - op: replace
-  path: /base/jenkins
+  path: /spec/source/helm/values
   value: |
     controller:
       nodePort: 31466
